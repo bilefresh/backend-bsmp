@@ -16,7 +16,7 @@ app.post("/users", function (req, res) {
   const query = "INSERT INTO users (email, password, business_name, business_phone) VALUES ?";
   const values = [req.body];
 
-  db.query(query, [values], function (err, result) {
+  db.query(query, values, function (err, result) {
     if (err) throw err;
     const create_user = { id: result.insertId, email: values[0], email: password[1] , business_name: values[2] , business_phone: values[3] };
     res.status(200).send(create_user);
