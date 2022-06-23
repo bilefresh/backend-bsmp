@@ -5,6 +5,12 @@ const port = 7000;
 
 app.use(express.json());
 
+
+app.get("/", function (req, res) {
+    const message = "Ogbeni better send this request somewhere else!";
+	res.status(200).send(messages);
+});
+
 //CREATE
 app.post("/users", function (req, res) {
   const query = "INSERT INTO users (email, password, business_name, business_name) VALUES (?,?,?,?)";
