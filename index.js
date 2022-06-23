@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.get("/", function (req, res) {
     const message = "Ogbeni better send this request somewhere else!";
-	res.status(200).send(messages);
+	res.status(200).send(message);
 });
 
 //CREATE
