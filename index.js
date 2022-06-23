@@ -14,7 +14,7 @@ app.get("/", function (req, res) {
 //CREATE
 app.post("/users", function (req, res) {
   const query = "INSERT INTO users (email, password, business_name, business_phone) VALUES ?";
-  const values = [req.body.text];
+  const values = [req.body];
 
   db.query(query, [values], function (err, result) {
     if (err) throw err;
