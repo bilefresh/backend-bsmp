@@ -39,7 +39,7 @@ app.get("/users", function (req, res) {
 app.post("/users/login", function (req, res) {
   const query = "SELECT * FROM users WHERE email=?";
   const password = req.body.password;
-  const value = req.body.email;
+  const value = [req.body.email];
   console.log(password, value);
   var tt = db.query(query, value);
   console.log(tt);
