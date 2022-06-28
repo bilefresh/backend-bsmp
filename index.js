@@ -26,7 +26,7 @@ app.post("/users/signup", function (req, res) {
 
 //READ
 app.get("/users", function (req, res) {
-  const query = "SELECT * FROM users WHERE `email` = bilesanmifary";
+  const query = "SELECT * FROM users";
 
   db.query(query, function (err, result) {
     if (err) throw err;
@@ -37,11 +37,13 @@ app.get("/users", function (req, res) {
 
 //LOGIN
 app.post("/users/login", function (req, res) {
-  const query = `SELECT * FROM users WHERE email = %`+req.body.email+`% ;`;
+	
+  const query = "SELECT * FROM users WHERE ?";
   const password = req.body.password;
   const value = [req.body.email];
+  var get = {"email": req.body.email};
   console.log(password, value);
-  var tt = db.query(query);
+  var tt = db.query(query, get);
   console.log(tt);
   // db.query(query, value, function (err, result) {
     // if (err) {
