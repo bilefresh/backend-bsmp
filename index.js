@@ -12,7 +12,7 @@ app.get("/", function (req, res) {
 });
 
 //SIGN UP
-app.post("/signup", function (req, res) {
+app.post("/users/signup", function (req, res) {
 	// console.log(req.body.email, req.body.password, req.body.business_name, req.body.business_phone);
   const query = "INSERT INTO users (email, password, business_name, business_phone) VALUES (?,?,?,?)";
   const values = [req.body.email, req.body.password, req.body.business_name, req.body.business_phone];
@@ -36,20 +36,20 @@ app.get("/users", function (req, res) {
 });
 
 //LOGIN
-app.post("/login", function (req, res) {
-  const query = "SELECT password FROM users WHERE email=?";
+app.post("/users/login", function (req, res) {
+  const query = "SELECT * FROM users WHERE email=?";
   const password = req.body.password;
   const value = req.body.email;
   console.log(password, value);
 
   db.query(query, value, function (err, result) {
     if (err) {
-		console.log("error");
+		console.log(err);
 		res.send("Incorrect email or password"); 
-		throw err;
+		// throw err;
 	}
 	else{
-		if (result == password){
+		if (result[0]['password'] == password){
 			res.status(200).send("User Authenticated");
 		}
 	}
