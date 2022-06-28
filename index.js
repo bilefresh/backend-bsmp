@@ -56,6 +56,7 @@ app.post("/users/login", function (req, res) {
 		console.log((result[0]['password'] == password));
 		console.log( (result[0]['password'] === password));
 		if (result[0]['password'] === password) res.status(200).send("User Authenticated");
+		else{res.send("Incorrect email or password"); }
 	}
   });
 });
