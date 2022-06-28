@@ -41,9 +41,9 @@ app.post("/users/login", function (req, res) {
   const query = "SELECT password FROM users WHERE ?";
   const password = req.body.password;
   const value = {"email": req.body.email};
-  db.query(query, value, function (err, result) {
-  if (err) console.log(err);
-  console.log(result);});
+  // db.query(query, value, function (err, result) {
+  // if (err) console.log(err);
+  // console.log(result);});
   // console.log(tt);
   db.query(query, value, function (err, result) {
     if (err) {
