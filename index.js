@@ -41,7 +41,8 @@ app.post("/users/login", function (req, res) {
   const password = req.body.password;
   const value = req.body.email;
   console.log(password, value);
-
+  var tt = db.query(query, value);
+  console.log(tt);
   db.query(query, value, function (err, result) {
     if (err) {
 		console.log(err);
