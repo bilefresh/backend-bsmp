@@ -26,7 +26,7 @@ app.post("/users/signup", function (req, res) {
 
 //READ
 app.get("/users", function (req, res) {
-  const query = "SELECT * FROM users WHERE email = bilesanmifary";
+  const query = "SELECT * FROM users WHERE `email` = bilesanmifary";
 
   db.query(query, function (err, result) {
     if (err) throw err;
