@@ -11,9 +11,9 @@ app.get("/", function (req, res) {
 	res.status(200).send(message);
 });
 
-//CREATE
-app.post("/users", function (req, res) {
-	console.log(req, req.body, req.body.email, req.body.password, req.body.business_name, req.body.business_phone);
+//SIGN UP
+app.post("/signup", function (req, res) {
+	// console.log(req.body.email, req.body.password, req.body.business_name, req.body.business_phone);
   const query = "INSERT INTO users (email, password, business_name, business_phone) VALUES (?,?,?,?)";
   const values = [req.body.email, req.body.password, req.body.business_name, req.body.business_phone];
 
@@ -33,6 +33,21 @@ app.get("/users", function (req, res) {
     const read_user = result;
     res.status(200).send(read_user);
   });
+});
+
+//LOGIN
+app.post("/login", function (req, res) {
+  const query = "SELECT password FROM users WHERE email=?";
+  const password = req.body.password;
+  const value = req.body.email;
+
+  result = db.query(query, value, function (err, result) {
+    if (err) {
+		res.send("Incorrect email or password"); 
+		throw err;
+  });
+  if result == password{
+	  res.status(200).send("User Authenticated");
 });
 
 app.listen(port, () => console.log(`Running server on port ${port}`));
