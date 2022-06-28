@@ -41,13 +41,32 @@ app.post("/login", function (req, res) {
   const password = req.body.password;
   const value = req.body.email;
 
-  result = db.query(query, value, function (err, result) {
+  db.query(query, value, function (err, result) {
     if (err) {
 		res.send("Incorrect email or password"); 
 		throw err;
+	}
+	else{
+		if (result == password){
+			res.status(200).send("User Authenticated");
+		}
+	}
   });
-  if result == password{
-	  res.status(200).send("User Authenticated");
 });
+
+//LOGIN
+// app.post("/login", function (req, res) {
+  // const query = "SELECT password FROM users WHERE email=?";
+  // const password = req.body.password;
+  // const value = req.body.email;
+
+  // result = db.query(query, value, function (err, result) {
+    // if (err) {
+		// res.send("Incorrect email or password"); 
+		// throw err;
+  // });
+  // if result == password{
+	  // res.status(200).send("User Authenticated");
+// });
 
 app.listen(port, () => console.log(`Running server on port ${port}`));
