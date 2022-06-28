@@ -52,8 +52,9 @@ app.post("/users/login", function (req, res) {
 		throw err;
 	}
 	else{
-		console.log(result);
-		if (result[0]['password'] == password){
+		console.log(result[0]['password']);
+		console.log(result['password']);
+		if (result['password'] == password){
 			res.status(200).send("User Authenticated");
 		}
 	}
