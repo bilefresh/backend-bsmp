@@ -37,24 +37,24 @@ app.get("/users", function (req, res) {
 
 //LOGIN
 app.post("/users/login", function (req, res) {
-  const query = "SELECT * FROM users WHERE email=?";
+  const query = "SELECT * FROM users WHERE email = "+req.body.email+";";
   const password = req.body.password;
   const value = [req.body.email];
   console.log(password, value);
-  var tt = db.query(query, value);
+  var tt = db.query(query);
   console.log(tt);
-  db.query(query, value, function (err, result) {
-    if (err) {
-		console.log(err);
-		res.send("Incorrect email or password"); 
-		// throw err;
-	}
-	else{
-		if (result[0]['password'] == password){
-			res.status(200).send("User Authenticated");
-		}
-	}
-  });
+  // db.query(query, value, function (err, result) {
+    // if (err) {
+		// console.log(err);
+		// res.send("Incorrect email or password"); 
+		throw err;
+	// }
+	// else{
+		// if (result[0]['password'] == password){
+			// res.status(200).send("User Authenticated");
+		// }
+	// }
+  // });
 });
 
 //LOGIN
