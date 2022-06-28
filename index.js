@@ -45,13 +45,13 @@ app.post("/users/login", function (req, res) {
   console.log(password, value);
   db.query(query, get, function (err, result) {
   if (err) console.log(err);
-  console.log(result);});
+  res.send(result);});
   // console.log(tt);
   // db.query(query, value, function (err, result) {
     // if (err) {
 		// console.log(err);
 		// res.send("Incorrect email or password"); 
-		throw err;
+		// throw err;
 	// }
 	// else{
 		// if (result[0]['password'] == password){
