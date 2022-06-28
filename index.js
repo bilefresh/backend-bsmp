@@ -40,9 +40,11 @@ app.post("/login", function (req, res) {
   const query = "SELECT password FROM users WHERE email=?";
   const password = req.body.password;
   const value = req.body.email;
+  console.log(password, value);
 
   db.query(query, value, function (err, result) {
     if (err) {
+		console.log("error");
 		res.send("Incorrect email or password"); 
 		throw err;
 	}
